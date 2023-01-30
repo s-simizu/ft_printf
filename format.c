@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conv.c                                             :+:      :+:    :+:   */
+/*   format.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sshimizu <sshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 00:32:34 by sshimizu          #+#    #+#             */
-/*   Updated: 2023/01/31 04:00:54 by sshimizu         ###   ########.fr       */
+/*   Updated: 2023/01/31 05:23:02 by sshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	print_d(int n, bool *options)
 	len = ft_strlen(s);
 	if (options[SPACE] && n >= 0)
 		len += write(1, " ", 1);
-	if (options[SIGN] && n >= 0)
+	if (options[PLUS] && n >= 0)
 		len += write(1, "+", 1);
 	ft_putstr_fd(s, 1);
 	free(s);

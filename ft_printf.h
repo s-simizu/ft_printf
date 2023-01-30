@@ -6,7 +6,7 @@
 /*   By: sshimizu <sshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 04:15:26 by sshimizu          #+#    #+#             */
-/*   Updated: 2023/01/31 04:34:12 by sshimizu         ###   ########.fr       */
+/*   Updated: 2023/01/31 05:23:28 by sshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # include <stdarg.h>
 # include <stdbool.h>
 
-# define PREFIX 0
+# define SHARP 0
 # define SPACE 1
-# define SIGN 2
+# define PLUS 2
 
 int	ft_printf(const char *str, ...);
 int	print_c(char c, bool *options);

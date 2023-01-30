@@ -6,7 +6,7 @@
 /*   By: sshimizu <sshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 00:32:41 by sshimizu          #+#    #+#             */
-/*   Updated: 2023/01/31 04:32:21 by sshimizu         ###   ########.fr       */
+/*   Updated: 2023/01/31 05:23:18 by sshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	print_x(unsigned long n, bool ucase, bool pointer, bool *options)
 	int	len;
 
 	len = 0;
-	if (pointer || (options[PREFIX] && n != 0))
+	if (pointer || (options[SHARP] && n != 0))
 	{
 		if (ucase)
 			len += write(1, "0X", 2);

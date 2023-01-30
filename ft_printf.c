@@ -6,7 +6,7 @@
 /*   By: sshimizu <sshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 04:10:34 by sshimizu          #+#    #+#             */
-/*   Updated: 2023/01/31 04:38:25 by sshimizu         ###   ########.fr       */
+/*   Updated: 2023/01/31 05:22:48 by sshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,18 @@ char	*get_options(char *conv, bool *options)
 {
 	int	i;
 
-	options[PREFIX] = false;
+	options[SHARP] = false;
 	options[SPACE] = false;
-	options[SIGN] = false;
+	options[PLUS] = false;
 	i = 0;
 	while (ft_strchr("# +", conv[i]) != NULL)
 	{
 		if (conv[i] == '#')
-			options[PREFIX] = true;
+			options[SHARP] = true;
 		else if (conv[i] == ' ')
 			options[SPACE] = true;
 		else if (conv[i] == '+')
-			options[SIGN] = true;
+			options[PLUS] = true;
 		i++;
 	}
 	return (conv + i);
