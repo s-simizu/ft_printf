@@ -6,13 +6,12 @@
 /*   By: sshimizu <sshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 04:10:34 by sshimizu          #+#    #+#             */
-/*   Updated: 2023/01/30 05:14:09 by sshimizu         ###   ########.fr       */
+/*   Updated: 2023/01/31 04:38:25 by sshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 #include "libft/libft.h"
-#include "libftprintf.h"
-#include <stdio.h>
 
 int	print_str(char *conv, const char *p)
 {
@@ -24,8 +23,7 @@ int	print_str(char *conv, const char *p)
 		return (ft_strlen(p));
 	}
 	len = conv - p;
-	write(1, p, len);
-	return (len);
+	return (write(1, p, len));
 }
 
 char	*get_options(char *conv, bool *options)
@@ -40,9 +38,9 @@ char	*get_options(char *conv, bool *options)
 	{
 		if (conv[i] == '#')
 			options[PREFIX] = true;
-		if (conv[i] == ' ')
+		else if (conv[i] == ' ')
 			options[SPACE] = true;
-		if (conv[i] == '+')
+		else if (conv[i] == '+')
 			options[SIGN] = true;
 		i++;
 	}
@@ -60,18 +58,16 @@ int	print_conv(char *conv, va_list *args, const char **p)
 	if (*conv == 's')
 		return (print_s(va_arg(*args, char *), options));
 	if (*conv == 'p')
-	{
-		options[PREFIX] = true;
-		return (print_x((long)va_arg(*args, void *), false, options));
-	}
+		return (print_x((unsigned long)va_arg(*args, void *), false, true,
+				options));
 	if (*conv == 'd' || *conv == 'i')
 		return (print_d(va_arg(*args, int), options));
 	if (*conv == 'u')
 		return (print_u(va_arg(*args, unsigned int), options));
 	if (*conv == 'x')
-		return (print_x((long)va_arg(*args, unsigned int), false, options));
+		return (print_x(va_arg(*args, unsigned int), false, false, options));
 	if (*conv == 'X')
-		return (print_x((long)va_arg(*args, unsigned int), true, options));
+		return (print_x(va_arg(*args, unsigned int), true, false, options));
 	if (*conv == '%')
 		return (print_per());
 	return (0);
@@ -100,28 +96,31 @@ int	ft_printf(const char *str, ...)
 }
 
 // #include <stdio.h>
+// #include <limits.h>
 // int	main(void)
 // {
-// 	int d = 9;
-// 	char c = 'A';
-// 	unsigned int u = UINT32_MAX;
+// int d = 9;
+// char c = 'A';
+// unsigned int u = UINT32_MAX;
 
-// 	printf("%d\n", ft_printf("%d is int value\n", d));
-// 	printf("%d\n", printf("%d is int value\n", d));
-// 	printf("%d\n", ft_printf("%c\n", c));
-// 	printf("%d\n", printf("%c\n", c));
-// 	printf("%d\n", ft_printf("%u\n", u));
-// 	printf("%d\n", printf("%u\n", u));
-// 	printf("%d\n", ft_printf("%p\n", &d));
-// 	printf("%d\n", printf("%p\n", &d));
-// 	printf("%d\n", ft_printf("%#x\n", u));
-// 	printf("%d\n", printf("%#x\n", u));
-// 	printf("%d\n", ft_printf("%X\n", u));
-// 	printf("%d\n", printf("%X\n", u));
-// 	printf("%d\n", ft_printf("%#X\n", u));
-// 	printf("%d\n", printf("%#X\n", u));
-// 	printf("%d\n", ft_printf("int: %d, char: %c, uint: %u\n", d, c, u));
-// 	printf("%d\n", printf("int: %d, char: %c, uint: %u\n", d, c, u));
-// 	printf("%d\n", ft_printf("%% %% %%\n"));
-// 	printf("%d\n", printf("%% %% %%\n"));
+// printf("%d\n", ft_printf("%d is int value\n", d));
+// printf("%d\n", printf("%d is int value\n", d));
+// printf("%d\n", ft_printf("%c\n", c));
+// printf("%d\n", printf("%c\n", c));
+// printf("%d\n", ft_printf("%u\n", u));
+// printf("%d\n", printf("%u\n", u));
+// printf("%d\n", ft_printf("%p\n", &d));
+// printf("%d\n", printf("%p\n", &d));
+// printf("%d\n", ft_printf("%#x\n", u));
+// printf("%d\n", printf("%#x\n", u));
+// printf("%d\n", ft_printf("%X\n", u));
+// printf("%d\n", printf("%X\n", u));
+// printf("%d\n", ft_printf("%#X\n", u));
+// printf("%d\n", printf("%#X\n", u));
+// printf("%d\n", ft_printf("int: %d, char: %c, uint: %u\n", d, c, u));
+// printf("%d\n", printf("int: %d, char: %c, uint: %u\n", d, c, u));
+// printf("%d\n", ft_printf("%% %% %%\n"));
+// printf("%d\n", printf("%% %% %%\n"));
+// printf("%d\n", printf("aaaaa%saaaaa\n", NULL));
+// printf("%d\n", ft_printf("aaaaa%saaaaa\n", NULL));
 // }

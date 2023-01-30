@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conv2.c                                            :+:      :+:    :+:   */
+/*   format2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sshimizu <sshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 00:32:41 by sshimizu          #+#    #+#             */
-/*   Updated: 2023/01/30 05:13:35 by sshimizu         ###   ########.fr       */
+/*   Updated: 2023/01/31 04:32:21 by sshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 #include "libft/libft.h"
-#include "libftprintf.h"
 
-int	print_hex(long n, bool ucase)
+int	print_hex(unsigned long n, bool ucase)
 {
 	int	len;
 	int	hex;
@@ -34,24 +34,20 @@ int	print_hex(long n, bool ucase)
 	return (len + 1);
 }
 
-int	print_x(long n, bool ucase, bool *options)
+int	print_x(unsigned long n, bool ucase, bool pointer, bool *options)
 {
 	int	len;
 
 	len = 0;
-	if (options[PREFIX])
+	if (pointer || (options[PREFIX] && n != 0))
 	{
 		if (ucase)
-			ft_putstr_fd("0X", 1);
+			len += write(1, "0X", 2);
 		else
-			ft_putstr_fd("0x", 1);
-		len += 2;
+			len += write(1, "0x", 2);
 	}
 	if (n == 0)
-	{
-		ft_putchar_fd('0', 1);
-		len++;
-	}
+		len += write(1, "0", 1);
 	else
 		len += print_hex(n, ucase);
 	return (len);
@@ -74,14 +70,11 @@ int	print_u(unsigned int n, bool *options)
 
 	len = 0;
 	if (options[SPACE])
-	{
-		ft_putchar_fd(' ', 1);
-		len++;
-	}
+		len += write(1, " ", 1);
 	if (n == 0)
 	{
-		ft_putchar_fd('0', 1);
-		return (1);
+		len += write(1, "0", 1);
+		return (len);
 	}
-	return (print_digit(n));
+	return (len + print_digit(n));
 }
