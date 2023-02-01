@@ -6,7 +6,7 @@
 /*   By: sshimizu <sshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 04:10:34 by sshimizu          #+#    #+#             */
-/*   Updated: 2023/01/31 05:22:48 by sshimizu         ###   ########.fr       */
+/*   Updated: 2023/02/01 15:27:15 by sshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*get_options(char *conv, bool *options)
 	options[SPACE] = false;
 	options[PLUS] = false;
 	i = 0;
-	while (ft_strchr("# +", conv[i]) != NULL)
+	while (ft_strchr("# +", conv[i]))
 	{
 		if (conv[i] == '#')
 			options[SHARP] = true;
@@ -42,8 +42,12 @@ char	*get_options(char *conv, bool *options)
 			options[SPACE] = true;
 		else if (conv[i] == '+')
 			options[PLUS] = true;
+		else if (conv[i] == '\0')
+			break ;
 		i++;
 	}
+	if (options[SPACE] && options[PLUS])
+		options[SPACE] = false;
 	return (conv + i);
 }
 
@@ -69,7 +73,8 @@ int	print_conv(char *conv, va_list *args, const char **p)
 	if (*conv == 'X')
 		return (print_x(va_arg(*args, unsigned int), true, false, options));
 	if (*conv == '%')
-		return (print_per());
+		return (write(1, "%", 1));
+	(*p)--;
 	return (0);
 }
 
@@ -102,9 +107,10 @@ int	ft_printf(const char *str, ...)
 // int d = 9;
 // char c = 'A';
 // unsigned int u = UINT32_MAX;
+// int min = INT32_MIN;
 
-// printf("%d\n", ft_printf("%d is int value\n", d));
-// printf("%d\n", printf("%d is int value\n", d));
+// printf("%d\n", ft_printf("%d\n", d));
+// printf("%d\n", printf("%d\n", d));
 // printf("%d\n", ft_printf("%c\n", c));
 // printf("%d\n", printf("%c\n", c));
 // printf("%d\n", ft_printf("%u\n", u));
@@ -121,6 +127,12 @@ int	ft_printf(const char *str, ...)
 // printf("%d\n", printf("int: %d, char: %c, uint: %u\n", d, c, u));
 // printf("%d\n", ft_printf("%% %% %%\n"));
 // printf("%d\n", printf("%% %% %%\n"));
-// printf("%d\n", printf("aaaaa%saaaaa\n", NULL));
 // printf("%d\n", ft_printf("aaaaa%saaaaa\n", NULL));
+// printf("%d\n", printf("aaaaa%saaaaa\n", NULL));
+// printf("%d\n", ft_printf("%s\n", ""));
+// printf("%d\n", printf("%s\n", ""));
+// printf("%d\n", ft_printf("% +++ #### ++   +d\n", d));
+// printf("%d\n", printf("% +++ #### ++   +d\n", d));
+// printf("%d\n", ft_printf("% +++ #### ++   +"));
+// printf("%d\n", printf("% +++ #### ++   +"));
 // }
