@@ -6,7 +6,7 @@
 /*   By: sshimizu <sshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 04:10:34 by sshimizu          #+#    #+#             */
-/*   Updated: 2023/02/01 15:27:15 by sshimizu         ###   ########.fr       */
+/*   Updated: 2023/02/01 15:39:17 by sshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	print_conv(char *conv, va_list *args, const char **p)
 	if (*conv == 'c')
 		return (print_c(va_arg(*args, int), options));
 	if (*conv == 's')
-		return (print_s(va_arg(*args, char *), options));
+		return (print_s(va_arg(*args, char *)));
 	if (*conv == 'p')
 		return (print_x((unsigned long)va_arg(*args, void *), false, true,
 				options));
@@ -135,4 +135,6 @@ int	ft_printf(const char *str, ...)
 // printf("%d\n", printf("% +++ #### ++   +d\n", d));
 // printf("%d\n", ft_printf("% +++ #### ++   +"));
 // printf("%d\n", printf("% +++ #### ++   +"));
+// printf("%d\n", ft_printf("% s\n", "aiueo"));
+// printf("%d\n", printf("% s\n", "aiueo"));
 // }

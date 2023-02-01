@@ -6,7 +6,7 @@
 /*   By: sshimizu <sshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 04:15:26 by sshimizu          #+#    #+#             */
-/*   Updated: 2023/01/31 05:23:28 by sshimizu         ###   ########.fr       */
+/*   Updated: 2023/02/01 15:39:27 by sshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 int	ft_printf(const char *str, ...);
 int	print_c(char c, bool *options);
-int	print_s(char *s, bool *options);
+int	print_s(char *s);
 int	print_d(int n, bool *options);
 int	print_u(unsigned int n, bool *options);
 int	print_x(unsigned long n, bool ucase, bool pointer, bool *options);

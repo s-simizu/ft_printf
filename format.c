@@ -6,17 +6,12 @@
 /*   By: sshimizu <sshimizu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 00:32:34 by sshimizu          #+#    #+#             */
-/*   Updated: 2023/01/31 05:23:02 by sshimizu         ###   ########.fr       */
+/*   Updated: 2023/02/01 15:39:06 by sshimizu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "ft_printf.h"
-
-int	print_per(void)
-{
-	return (write(1, "%", 1));
-}
 
 int	print_c(char c, bool *options)
 {
@@ -29,15 +24,13 @@ int	print_c(char c, bool *options)
 	return (len);
 }
 
-int	print_s(char *s, bool *options)
+int	print_s(char *s)
 {
 	int	len;
 
 	if (s == NULL)
 		return (write(1, "(null)", 6));
 	len = ft_strlen(s);
-	if (options[SPACE])
-		len += write(1, " ", 1);
 	ft_putstr_fd(s, 1);
 	return (len);
 }
